@@ -6,6 +6,9 @@ import io.gatling.http.Predef._
 
 class CreateAndGetVetSimulation extends PetClinicSimulation {
 
+  val specialityId = 3
+  val specialityName = "dentistry"
+
   val scn = scenario("Exercise 2")
     .exec(http("create vet")
       .post("/api/vets")
@@ -31,19 +34,19 @@ class CreateAndGetVetSimulation extends PetClinicSimulation {
     .exec(http("update speciality")
       .put("/api/vets/${vetId}")
       .body(StringBody(
-        """
+        s"""
           |{
-          |  "id":${vetId},
-          |  "firstName":"${vetFirstName}",
-          |  "lastName":"${vetLastName}",
+          |  "id":$${vetId},
+          |  "firstName":"$${vetFirstName}",
+          |  "lastName":"$${vetLastName}",
           |  "specialties":[
           |    {
           |      "id":1,
           |      "name":"radiology"
           |    },
           |    {
-          |      "id":3,
-          |      "name":"dentistry"
+          |      "id":${specialityId},
+          |      "name":"${specialityName}"
           |    }
           |  ]
           |}

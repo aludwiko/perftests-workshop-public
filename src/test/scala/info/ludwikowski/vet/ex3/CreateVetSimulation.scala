@@ -6,7 +6,7 @@ import io.gatling.http.Predef._
 
 class CreateVetSimulation extends PetClinicSimulation {
 
-  val scn = scenario("Exercise 2")
+  val scn = scenario("Exercise 3")
     .exec(http("create vet")
       .post("/api/vets")
       .body(StringBody(

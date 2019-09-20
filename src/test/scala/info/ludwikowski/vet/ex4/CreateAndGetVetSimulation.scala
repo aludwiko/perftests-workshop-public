@@ -9,7 +9,7 @@ class CreateAndGetVetSimulation extends PetClinicSimulation {
   val specialityId = 3
   val specialityName = "dentistry"
 
-  val scn = scenario("Exercise 2")
+  val scn = scenario("Exercise 4")
     .exec(http("create vet")
       .post("/api/vets")
       .body(StringBody(

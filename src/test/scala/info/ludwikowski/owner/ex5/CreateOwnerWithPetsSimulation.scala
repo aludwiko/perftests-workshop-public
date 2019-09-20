@@ -12,7 +12,7 @@ class CreateOwnerWithPetsSimulation extends PetClinicSimulation {
 
   val petTypes = List(PetType(1, "cat"), PetType(2, "dog"), PetType(3, "lizard"), PetType(4, "snake"), PetType(5, "hamster"))
 
-  val scn = scenario("Exercise 2")
+  val scn = scenario("Exercise 5")
     .exec(
       http("create owner")
         .post("/api/owners")

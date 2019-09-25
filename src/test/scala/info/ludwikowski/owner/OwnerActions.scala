@@ -110,4 +110,32 @@ object OwnerActions {
            |""".stripMargin)).asJson
       .check(status.is(201))
 
+  def addPet(ownerIdKey: String, petIdKey: String, petNameKey: String) = //http(s"add pet for owner with id $${${ownerIdKey}}")
+    http(s"add pet for owner with id ${toEL(petNameKey)}")
+      .post("/api/pets")
+      .body(StringBody(
+        s"""
+           |{
+           |  "id":null,
+           |  "owner":{
+           |    "id":${toEL(ownerIdKey)},
+           |    "firstName":"Andrzej",
+           |    "lastName":"Ludwikowski",
+           |    "address":"address",
+           |    "city":"Wrocław",
+           |    "telephone":"123123123",
+           |    "pets":[
+           |
+           |    ]
+           |  },
+           |  "name":"rex",
+           |  "birthDate":"2019\\/09\\/05",
+           |  "type":{
+           |    "id":${toEL(petIdKey)},
+           |    "name":"${toEL(petNameKey)}"
+           |  }
+           |}
+           |""".stripMargin)).asJson
+      .check(status.is(201))
+
 }

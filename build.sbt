@@ -1,5 +1,9 @@
 enablePlugins(GatlingPlugin)
 
+lazy val otherDeps = Seq(
+  "org.apache.activemq" % "activemq-client" % "5.15.13"
+)
+
 lazy val gatling = Seq(
   "io.gatling.highcharts" % "gatling-charts-highcharts",
   "io.gatling" % "gatling-test-framework"
@@ -13,5 +17,5 @@ lazy val root = (project in file("."))
       version := "0.1.0-SNAPSHOT"
     )),
     name := "perftests",
-    libraryDependencies ++= gatling
+    libraryDependencies ++= gatling ++ otherDeps
   )

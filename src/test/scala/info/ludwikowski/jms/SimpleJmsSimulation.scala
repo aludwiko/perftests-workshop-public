@@ -25,10 +25,12 @@ class SimpleJmsSimulation extends Simulation {
 
   val scn = scenario("JMS DSL test")
     .feed(randomMessage)
-    .exec(jms("req reply testing").send
+    .exec(jms("req reply testing").requestReply
       .queue("inbox")
+      .replyQueue("outbox")
       .textMessage("${message}")
-      .property("_type", "java.lang.String"))
+      .property("_type", "java.lang.String")
+      .check(simpleCheck(checkBodyTextCorrect)))
 
 
   setUp(scn.inject(constantUsersPerSec(5).during(30 seconds)))
